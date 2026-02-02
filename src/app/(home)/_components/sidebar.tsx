@@ -1,11 +1,8 @@
 "use client";
 
 import React from "react";
-import Link from "next/link";
 import {
-    UserRound,
     FolderCode,
-    LogOut,
 } from "lucide-react";
 import {
     Sidebar,
@@ -17,8 +14,6 @@ import {
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
     DropdownMenu,
-    DropdownMenuContent,
-    DropdownMenuItem,
     DropdownMenuTrigger
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";

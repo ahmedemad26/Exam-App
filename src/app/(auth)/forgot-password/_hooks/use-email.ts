@@ -1,5 +1,5 @@
-import { forgotPassword, verifyAction } from "@/lib/actions/auth.action";
-import { EmailValues, VerifyValues } from "@/lib/schemas/auth.schema";
+import { forgotPassword } from "@/lib/actions/auth.action";
+import { EmailValues } from "@/lib/schemas/auth.schema";
 import { useMutation } from "@tanstack/react-query";
 
 export const useEmail = () => {

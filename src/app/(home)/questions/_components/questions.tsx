@@ -1,7 +1,5 @@
 "use client";
-import { Button } from "@/components/ui/button";
-import { ChevronLeft, CircleQuestionMark } from "lucide-react";
-import Link from "next/link";
+
 import React from "react";
 import QuizForm from "./quiz-form";
 import { useQuestions } from "../_hooks/use-question";

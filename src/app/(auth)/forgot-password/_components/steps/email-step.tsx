@@ -9,7 +9,6 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { MoveRight } from 'lucide-react';
 import React from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form';
-import z from 'zod';
 import { useEmail } from '../../_hooks/use-email';
 import { EmailSchema, EmailValues } from '@/lib/schemas/auth.schema';
 import { toast } from 'sonner';

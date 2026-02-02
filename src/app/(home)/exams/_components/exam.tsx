@@ -3,7 +3,6 @@ import {  Timer } from "lucide-react";
 import Link from "next/link";
 import React from "react";
 import { useExams } from "../_hooks/use-exam";
-import { ExamQuestionSkeleton } from "../../_components/skelton";
 import HeaderExam from "./header-exam";
 import ExamsSkeleton from "./skelton-exam";
 

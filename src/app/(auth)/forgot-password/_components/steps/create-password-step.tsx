@@ -9,7 +9,6 @@ import { useNewPassword } from '../../_hooks/use-create-password';
 import { toast } from 'sonner';
 import { Input } from '@/components/ui/input';
 import { useRouter } from 'next/navigation';
-import { ForgotPasswordSteps } from '@/lib/types/auth';
 
 //Props
 type CreatePasswordStepProps = {
@@ -37,7 +36,7 @@ export default function CreatePasswordStep({ email }: CreatePasswordStepProps) {
       newPassword: values.newPassword,
       email: email!,
     }, {
-      onSuccess: (data) => {
+      onSuccess: () => {
         toast.success("Password Reset successfully");
         router.push("/login");
       },

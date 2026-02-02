@@ -15,7 +15,7 @@ import {
   changePasswordSchema,
   changePasswordValues,
 } from "@/lib/schemas/change-password.schema";
-import { Check, Loader2 } from "lucide-react";
+import { Loader2 } from "lucide-react";
 import { SubmitHandler, useForm } from "react-hook-form";
 
 import ErrorMessage from "@/app/(home)/_components/error-message";

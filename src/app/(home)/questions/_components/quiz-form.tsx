@@ -53,8 +53,11 @@ export default function QuizForm({ examId }: QuizFormProps) {
     // Custom hook to fetch questions for the specific exam
     const { payload, error } = useQuestions(examId);
 
-    // Questions
-    const questions: Question[] = payload?.questions ?? [];
+    // Questions (memoized for stable useMemo/useEffect deps)
+    const questions = useMemo<Question[]>(
+        () => payload?.questions ?? [],
+        [payload?.questions]
+    );
     // Calculate progress percentage for progress bar
     const progress = ((currentIndex + 1) / (questions.length || 1)) * 100;
     // Timer configuration
@@ -143,13 +146,13 @@ export default function QuizForm({ examId }: QuizFormProps) {
         if (questions.length) {
             form.reset(defaultValues);
         }
-    }, [questions]);
+    }, [questions, defaultValues, form]);
 
     // Handle error state when questions fail to load
-    if (error) return <p>Error loading questions</p>;
+    if (error) return <p>Error loading questions.</p>;
 
     // Handle case when no questions are available
-    if (!questions.length) return <p>No questions found</p>;
+    if (!questions.length) return <p>No questions found.</p>;
 
     // Show results page when quiz is completed
     if (showResult && resultData) {

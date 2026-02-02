@@ -26,7 +26,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { profileSchema, profileValues } from "@/lib/schemas/edit-profile.schema";
-import { Check, Loader2, TriangleAlert } from "lucide-react";
+import {  Loader2, TriangleAlert } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { signOut } from "next-auth/react";
 import { SubmitHandler, useForm } from "react-hook-form";
@@ -86,7 +86,7 @@ export default function ProfileForm() {
         signOut({ callbackUrl: "/login" });
       },
       // Error callback - show error message
-      onError: (error) => {
+      onError: () => {
         toast.error("Delete Failed");
       },
     });

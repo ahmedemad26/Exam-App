@@ -64,7 +64,7 @@ export function SubjectCard() {
         loader={<LoadingIndicator isLoading={isFetchingNextPage} />}
         endMessage={
           <p className="py-8 text-center text-sm text-gray-500 dark:text-gray-400">
-            You've reached the end
+            You have reached the end
           </p>
         }
       >

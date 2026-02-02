@@ -25,7 +25,7 @@ export async function GET(request: NextRequest) {
             {
                 method: "GET",
                 headers: {
-                    token: token.accessToken,
+                    token: token.accessToken as string,
                     ...JSON_HEADER,
                 },
             }
@@ -41,7 +41,7 @@ export async function GET(request: NextRequest) {
         // Return data
         const payload: GetExamsResponse = await response.json();
         return NextResponse.json(payload);
-    } catch (error) {
+    } catch {
         return NextResponse.json(
             { error: "Internal server error" },
             { status: 500 }

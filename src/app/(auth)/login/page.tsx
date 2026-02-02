@@ -1,7 +1,5 @@
-import Link from 'next/link'
 import React from 'react'
 import LoginForm from './_components/login-form'
-import AuthHeaderLayout from '../_components/layout/auth-header-layout';
 import AuthFooterLayout from '../_components/layout/auth-footer-layout';
 import AuthHeader from '../_components/layout/auth-header-layout';
 

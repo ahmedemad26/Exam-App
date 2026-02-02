@@ -6,12 +6,10 @@ export const metadata = {
 };
 
 interface PageProps {
-  params: {
-    id: string;
-  };
+  params: Promise<{ id: string }>;
 }
 
-export default function page({ params }: PageProps) {
-  
-  return <Questions examId={params.id} />;
+export default async function Page({ params }: PageProps) {
+  const { id } = await params;
+  return <Questions examId={id} />;
 }

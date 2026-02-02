@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils/tailwind-cn";
 
 
-function AuthTitle({ title, className, ...props }: React.HtmlHTMLAttributes<HTMLHeadingElement>) {
+function AuthTitle({ className, ...props }: React.HtmlHTMLAttributes<HTMLHeadingElement>) {
   return <h1 className={cn("text-3xl font-inter font-bold", className)} {...props} />
 }
 

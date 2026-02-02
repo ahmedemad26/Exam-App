@@ -46,6 +46,7 @@ export async function GET(request: NextRequest) {
         const payload: GetQuestionsResponse = await response.json();
         return NextResponse.json(payload);
     } catch (error) {
+        console.error(error);
         return NextResponse.json(
             { error: "Internal Server Error" },
             { status: 500 }

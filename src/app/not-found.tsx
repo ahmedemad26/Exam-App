@@ -38,7 +38,7 @@ export default function NotFound() {
                                 </code>
                             </span>
                         )}{" "}
-                        you're looking for doesn't exist. It might have been moved or deleted.
+                        you are looking for does not exist. It might have been moved or deleted.
                     </p>
                 </div>
 

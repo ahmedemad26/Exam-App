@@ -1,5 +1,4 @@
 import RegisterForm from './_components/register-form';
-import AuthHeaderLayout from '../_components/layout/auth-header-layout';
 import AuthFooterLayout from '../_components/layout/auth-footer-layout';
 import AuthHeader from '../_components/layout/auth-header-layout';
 
