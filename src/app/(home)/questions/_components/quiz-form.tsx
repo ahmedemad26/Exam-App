@@ -39,6 +39,27 @@ export type FormValues = {
     time?: number;
 };
 
+// Render question text with code parts (e.g. <p>, <div>) styled as inline code
+function QuestionText({ text }: { text: string }) {
+    const parts = text.split(/(<[^>]+>)/g);
+    return (
+        <>
+            {parts.map((part, i) =>
+                part.startsWith("<") && part.endsWith(">") ? (
+                    <code
+                        key={i}
+                        className="rounded bg-slate-100 px-1.5 py-0.5 font-mono text-[0.9em] text-slate-700 border border-slate-200"
+                    >
+                        {part}
+                    </code>
+                ) : (
+                    <span key={i}>{part}</span>
+                )
+            )}
+        </>
+    );
+}
+
 // QuizForm Component
 export default function QuizForm({ examId }: QuizFormProps) {
     // States
@@ -175,8 +196,8 @@ export default function QuizForm({ examId }: QuizFormProps) {
             >
                 {/* Question Card */}
                 <Card key={currentQuestion._id} className="border-none shadow-none">
-                    {/* Header */}
-                    <header className="w-full font-mono  text-gray-500 flex justify-between px-4 sm:px-6 ">
+                    {/* Header - centered on mobile */}
+                    <header className="w-full font-mono text-gray-500 flex flex-col items-center text-center gap-2 px-4 sm:px-6 sm:flex-row sm:justify-between sm:items-start sm:text-left sm:gap-0">
                         <p>Frontend Development - {questions[0].exam?.title}</p>
                         <p>
                             Question{" "}
@@ -204,9 +225,11 @@ export default function QuizForm({ examId }: QuizFormProps) {
                             name={`answers.${currentIndex}.correct` as const}
                             render={({ field }) => (
                                 <FormItem>
-                                    {/* Question */}
-                                    <FormLabel className="font-mono text-[24px] font-semibold text-blue-600">
-                                        {currentQuestion.question}
+                                    {/* Question - improved typography and code styling */}
+                                    <FormLabel className="block cursor-default pb-4 border-b border-slate-200/80 mb-4">
+                                        <span className="font-mono text-lg sm:text-[22px] md:text-[24px] font-semibold text-blue-600 leading-relaxed text-center md:text-left block">
+                                            <QuestionText text={currentQuestion.question} />
+                                        </span>
                                     </FormLabel>
 
                                     <FormControl>
@@ -214,6 +237,7 @@ export default function QuizForm({ examId }: QuizFormProps) {
                                         <RadioGroup
                                             onValueChange={field.onChange}
                                             value={field.value ?? ""}
+                                            className="flex flex-col items-stretch md:items-stretch mx-auto w-full max-w-xl md:max-w-none"
                                         >
                                             {/* Map of answers which in current question */}
                                             {currentQuestion.answers.map((ans) => (
@@ -240,12 +264,12 @@ export default function QuizForm({ examId }: QuizFormProps) {
                     </div>
                 </Card>
 
-                {/* Buttons */}
+                {/* Buttons - centered on mobile */}
                 <div className="w-full px-4 sm:px-6">
-                    <div className="flex justify-evenly items-center gap-4">
+                    <div className="flex flex-col sm:flex-row justify-center items-center gap-4 sm:justify-evenly">
                     {/* Previous Button */}
                     <Button
-                        className="w-1/2"
+                        className="w-full sm:w-1/2 max-w-[280px] sm:max-w-none"
                         type="button"
                         disabled={currentIndex === 0}
                         onClick={() => setCurrentIndex((i) => i - 1)}
@@ -283,7 +307,7 @@ export default function QuizForm({ examId }: QuizFormProps) {
                     {/* Next/Submit Button*/}
                     {isLast ? (
                         <Button
-                            className="w-1/2 "
+                            className="w-full sm:w-1/2 max-w-[280px] sm:max-w-none"
                             type="submit"
                             disabled={
                                 !form.watch(`answers.${currentIndex}.correct`) || isPending
@@ -299,7 +323,7 @@ export default function QuizForm({ examId }: QuizFormProps) {
                         </Button>
                     ) : (
                         <Button
-                            className="w-1/2 "
+                            className="w-full sm:w-1/2 max-w-[280px] sm:max-w-none"
                             type="button"
                             onClick={() => setCurrentIndex((i) => i + 1)}
                             disabled={!form.watch(`answers.${currentIndex}.correct`)} // Require answer to proceed

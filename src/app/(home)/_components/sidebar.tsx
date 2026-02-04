@@ -32,7 +32,7 @@ export default function SidebarHome({
     const { data: session } = useSession();
 
     return (
-        <SidebarProvider>
+        <SidebarProvider className="h-svh overflow-hidden">
             <Sidebar>
                 <div className="flex flex-col h-full font-mono">
                     {/* Header */}
@@ -50,7 +50,7 @@ export default function SidebarHome({
             </Sidebar>
 
             <SidebarInset>
-                <main id="main-scroll" className="flex-1 overflow-auto">
+                <main id="main-scroll" className="flex-1 min-h-0 overflow-auto">
                     {/* Mobile Header with Menu Button */}
                     <header className="lg:hidden sticky top-0 z-40 bg-white border-b">
                         <div className="flex items-center justify-between p-4">

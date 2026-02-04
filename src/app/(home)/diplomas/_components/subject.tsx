@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useSubjects } from "../_hooks/use-subject";
@@ -31,6 +32,18 @@ export function SubjectCard() {
   const subjects =
     response?.pages?.flatMap((page: GetSubjectsResponse) => page.subjects) ??
     [];
+
+  // Load more when content doesn't fill the scroll container (no scrollbar yet)
+  useEffect(() => {
+    if (!hasNextPage || isFetchingNextPage || subjects.length === 0) return;
+    const el = document.getElementById("main-scroll");
+    if (!el) return;
+    const t = setTimeout(() => {
+      const { scrollHeight, clientHeight } = el;
+      if (scrollHeight <= clientHeight) fetchNextPage();
+    }, 100);
+    return () => clearTimeout(t);
+  }, [subjects.length, hasNextPage, isFetchingNextPage, fetchNextPage]);
 
   // Loading state
   if (isLoading) {

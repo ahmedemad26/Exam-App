@@ -52,9 +52,9 @@ export default function ResultView({
           <div className="lg:w-1/3">
             <Card className="border-none shadow-none">
               <CardContent className="flex flex-col items-center justify-center p-6">
-                {/* Pie Chart */}
-                <div className="w-[200px] h-[200px] mb-6">
-                  <ResponsiveContainer width="100%" height="100%">
+                {/* Pie Chart - explicit size avoids Recharts "width/height -1" warning */}
+                <div className="w-[200px] h-[200px] min-w-[200px] min-h-[200px] mb-6">
+                  <ResponsiveContainer width={200} height={200}>
                     <PieChart>
                       <Pie
                         data={data}

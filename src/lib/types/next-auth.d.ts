@@ -16,12 +16,15 @@ declare module "next-auth" {
     role: string;
     accessToken: string;
   }
-  /**
-   * Returned by `useSession`, `getSession` and received as a prop on the `SessionProvider` React Context
-   */
+  
+  /* eslint-disable @typescript-eslint/no-empty-object-type */
+  interface Session extends User {
+    // Include accessToken for authenticated API calls
+  }
 }
 
 declare module "next-auth/jwt" {
-  /** Returned by the `jwt` callback and `getToken`, when using JWT sessions */
-  type JWT = User;
+  /* eslint-disable @typescript-eslint/no-empty-object-type */
+  interface JWT extends User {
+  }
 }
