@@ -13,10 +13,8 @@ export const getToken = async () => {
             token: tokenCookie,
             secret: process.env.NEXTAUTH_SECRET!,
         });
-        console.log("final boss", jwt);
         return jwt;
     } catch (error) {
-        console.log("getToken error", error);
         return null;
     }
 };
