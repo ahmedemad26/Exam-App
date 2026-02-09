@@ -1,10 +1,10 @@
 import { getToken } from "next-auth/jwt";
 import { NextRequest, NextResponse } from "next/server";
 
-
+// Protected routes
 const protectedRoutes = ["/account", "/diplomas", "/questions"];
 
-
+// Auth routes
 const authRoutes = ["/login", "/register", "/forgot-password"];
 
 //Utility function for login redirection

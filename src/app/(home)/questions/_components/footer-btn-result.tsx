@@ -14,11 +14,11 @@ export default function FooterBtnResult() {
         </Button>
         <Button
             asChild
-            className="flex-1 gap-2 bg-blue-600 hover:bg-blue-700 cursor-pointer"
+            className="flex-1  gap-2 bg-blue-600  hover:bg-blue-700 cursor-pointer"
         >
-            <Link href="/diplomas">
-                <Compass className="w-4 h-4" />
-                Explore
+            <Link href="/diplomas" className="flex items-center gap-2">
+               
+                Explore  <Compass className="w-4 h-4" />
             </Link>
         </Button>
     </div >
