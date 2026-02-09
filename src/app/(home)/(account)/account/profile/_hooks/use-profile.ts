@@ -5,17 +5,17 @@ import type { UserResponse } from "@/lib/types/edit-profile";
 import { useMutation } from "@tanstack/react-query";
 
 export const useProfile = () => {
-    const mutation = useMutation<UserResponse, Error, profileValues>({
-        mutationFn: async (userData) => {
-            const response = await editProfile(userData);
+  const mutation = useMutation<UserResponse, Error, profileValues>({
+    mutationFn: async (userData) => {
+      const response = await editProfile(userData);
 
-            // Error
-            if ("code" in (response as any)) {
-                throw new Error((response as any).message || "Update failed");
-            }
-            return response as UserResponse;
-        },
-    });
+      if ("code" in response) {
+        throw new Error(response.message || "Update failed");
+      }
 
-    return { ...mutation };
+      return response as UserResponse;
+    },
+  });
+
+  return { ...mutation };
 };

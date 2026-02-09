@@ -6,7 +6,7 @@ import { getToken } from "../utils/get-token";
 
 export const editProfile = async (
   userData: profileValues
-): Promise<UserResponse> => {
+): Promise<ApiResponse<UserResponse>> => {
   try {
     const token = await getToken();
     if (!token?.accessToken) {
@@ -24,9 +24,7 @@ export const editProfile = async (
       }
     );
 
-   
-
-    const payload: UserResponse = await response.json();
+    const payload: ApiResponse<UserResponse> = await response.json();
 
     return payload;
   } catch (error) {
