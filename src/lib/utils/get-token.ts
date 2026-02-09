@@ -1,20 +1,23 @@
 import { cookies } from "next/headers";
 import { decode } from "next-auth/jwt";
+import type { JWT } from "next-auth/jwt";
 
-export const getToken = async () => {
+export const getToken = async (): Promise<JWT | null> => {
+    const cookieStore = await cookies();
+
     const tokenCookie =
-        (await cookies()).get("accessToken")?.value ||
-        (await cookies()).get("next-auth.session-token")?.value ||
-        (await cookies()).get("__Secure-next-auth.session-token")?.value;
+        cookieStore.get("__Secure-next-auth.session-token")?.value ||
+        cookieStore.get("next-auth.session-token")?.value ||
+        cookieStore.get("accessToken")?.value;
+
     if (!tokenCookie) return null;
 
+    const secret = process.env.NEXTAUTH_SECRET;
+    if (!secret) return null;
+
     try {
-        const jwt = await decode({
-            token: tokenCookie,
-            secret: process.env.NEXTAUTH_SECRET!,
-        });
-        return jwt;
-    } catch (error) {
+        return await decode({ token: tokenCookie, secret });
+    } catch {
         return null;
     }
 };

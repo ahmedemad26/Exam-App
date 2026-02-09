@@ -1,5 +1,7 @@
 "use client";
 import { submitAnswer } from "@/lib/api/exam/answer.api";
+import type { QuizResultResponse } from "@/lib/types/result";
+import type { FormValues } from "../_components/quiz-form";
 import { useMutation } from "@tanstack/react-query";
 
 export const useResult = () => {
@@ -10,14 +12,9 @@ export const useResult = () => {
     data: resultData,
     mutate,
     reset,
-  } = useMutation({
+    error,
+  } = useMutation<QuizResultResponse, Error, FormValues>({
     mutationFn: submitAnswer,
-    onSuccess: (data) => {
-      return data;
-    },
-    onError: (error) => {
-      throw new Error(error.message);
-    },
   });
 
   return {
@@ -27,5 +24,6 @@ export const useResult = () => {
     resultData,
     mutate,
     reset,
+    error,
   };
 };
