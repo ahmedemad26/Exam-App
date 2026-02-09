@@ -10,7 +10,7 @@ export const profileSchema = z.object({
     )
     .min(3, "Username must be at least 3 characters")
     .max(20, "Username must be less than 20 characters")
-    .or(z.literal("")) // يسمح تبعت input فاضي
+    .or(z.literal("")) // Empty is allowed
     .optional(),
 
   firstName: z
@@ -19,7 +19,7 @@ export const profileSchema = z.object({
     .regex(/^[a-zA-Z\u0600-\u06FF\s'-]+$/)
     .min(2, "Name must be at least 2 characters")
     .max(30, "Name must be less than 30 characters")
-    .or(z.literal("")) // نفس الحكاية
+    .or(z.literal("")) // Same story
     .optional(),
 
   lastName: z
@@ -34,7 +34,7 @@ export const profileSchema = z.object({
   email: z
     .email("Invalid email address")
     .trim()
-    .or(z.literal("")) // فاضي ماشي
+    .or(z.literal("")) // Empty is allowed
     .optional(),
 
   phone: z

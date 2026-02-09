@@ -1,9 +1,8 @@
-// نوع الـ Answer Options (ممكن يتوسع لو عندك structure معين)
+// Answer Options Type (can be expanded if you have a specific structure)
 interface AnswerOptions {
-    [key: string]: string; // مثلا: { "A1": "text", "A2": "text" }
+    [key: string]: string; // Example: { "A1": "text", "A2": "text" }
 }
-
-// السؤال اللي جاوبت عليه غلط
+// Wrong Question
 interface WrongQuestion {
     QID: string;
     Question: string;
@@ -12,7 +11,7 @@ interface WrongQuestion {
     answers: AnswerOptions;
 }
 
-// السؤال اللي جاوبت عليه صح
+// Correct Question
 interface CorrectQuestion {
     QID: string;
     Question: string;
@@ -20,12 +19,12 @@ interface CorrectQuestion {
     answers: AnswerOptions;
 }
 
-// الـ response الأساسي
+// Main response
 export interface QuizResultResponse {
     message: string; // "success"
-    correct: number; // عدد الإجابات الصح
-    wrong: number; // عدد الإجابات الغلط
-    total: string; // "10%" أو نسبة مئوية كنص
+    correct: number; // Number of correct answers
+    wrong: number; // Number of wrong answers
+    total: string; // "10%" or percentage as text
     WrongQuestions: WrongQuestion[];
     correctQuestions: CorrectQuestion[];
 }
