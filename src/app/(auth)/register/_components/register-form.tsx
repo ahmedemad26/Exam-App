@@ -42,13 +42,14 @@ export default function RegisterForm() {
 
         // Register
         register(values, {
-            onSuccess: () => {
-                toast.success("Registration successful");
-                router.push("/login");
-            },
-            onError: () => {
-                toast.error("Registration failed");
-            },
+          onSuccess: () => {
+            toast.success("Registration successful");
+            router.push("/login");
+          },
+          // Error
+          onError: () => {
+            toast.error("Registration failed. Please check your data and try again.");
+          },
         });
     };
 
@@ -190,7 +191,9 @@ export default function RegisterForm() {
                     )}
                 />
                 {/* Error Message */}
-                <ErrorMessage className="col-span-2 mb-2">{error?.message}</ErrorMessage>
+                <ErrorMessage className="col-span-2 mb-2">
+                  {error?.message}
+                </ErrorMessage>
                 {/* Submit */}
                 <Button type="submit" loading={isPending} disabled={isPending || (form.formState.isSubmitted && !form.formState.isValid)} className="col-span-2" >Create Account</Button>
             </form>

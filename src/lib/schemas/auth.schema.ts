@@ -27,10 +27,24 @@ type LoginValues = z.infer<typeof loginSchema>;
 
 // Register Schema
 const registerSchema = z.object({
-    firstName: z.string('Please enter your first name').nonempty("Your first name is required"),
-    lastName: z.string('Please enter your last name').nonempty("Your last name is required"),
-    username: z.string('Please enter your username').nonempty("Your username is required"),
-    email: z.string('Please enter your email').nonempty("Your email is required").email("Invalid email address"),
+    firstName: z
+        .string("Please enter your first name")
+        .trim()
+        .min(1, "Your first name is required")
+        .regex(/^[a-zA-Z]+$/, "First name can contain letters only, without spaces or symbols."),
+    lastName: z
+        .string("Please enter your last name")
+        .trim()
+        .min(1, "Your last name is required")
+        .regex(/^[a-zA-Z]+$/, "Last name can contain letters only, without spaces or symbols."),
+    username: z
+        .string("Please enter your username")
+        .trim()
+        .min(1, "Your username is required"),
+    email: z
+        .string("Please enter your email")
+        .nonempty("Your email is required")
+        .email("Invalid email address"),
     password: z.string()
         .min(1, "Your password is required")
         .regex(/^(?=.*[0-9]).*$/, "Password must contain one digit from 1 to 9")
