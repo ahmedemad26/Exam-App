@@ -29,10 +29,6 @@ export const changePassword = async (
 
     const payload: changePasswordResponse = await response.json();
 
-    if (!response.ok) {
-      throw payload.message || "Somthing Went Wrong";
-    }
-
     // Clear old tokens before setting new session
     (await cookies()).delete("accessToken");
     (await cookies()).delete("next-auth.session-token");

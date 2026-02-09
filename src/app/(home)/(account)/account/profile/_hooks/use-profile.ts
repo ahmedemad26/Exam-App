@@ -1,17 +1,20 @@
 "use client";
 import { editProfile } from "@/lib/api/edit-profile.api";
+import { profileValues } from "@/lib/schemas/edit-profile.schema";
 import { useMutation } from "@tanstack/react-query";
 
 export const useProfile = () => {
     const mutation = useMutation({
-        mutationFn: editProfile,
-        onSuccess: (data) => {
-            return data;
-        },
-        onError: (error) => {
-            throw new Error(error.message);
+        mutationFn: async (userData: profileValues) => {
+            const response = await editProfile(userData);
+
+            // Error
+            if ("code" in response) {
+                throw new Error(response.message);
+            }
+            return response;
         },
     });
 
-    return { ...mutation, profileData: mutation.data };
+    return { ...mutation };
 };

@@ -1,4 +1,5 @@
 "use client";
+
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -92,10 +93,7 @@ export default function ProfileForm() {
     });
   };
 
-  /**
-   * Form submission handler for profile updates
-   * Filters out empty fields and updates user profile
-   */
+   // Form submission handler for profile updates
   const onSubmit: SubmitHandler<profileValues> = (values) => {
     // Remove empty fields
     const data = removeEmptyFields(values);

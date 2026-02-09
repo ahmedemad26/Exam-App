@@ -24,9 +24,7 @@ export const editProfile = async (
       }
     );
 
-    if (!response.ok) {
-      throw new Error(`failed: ${response.statusText}`);
-    }
+   
 
     const payload: UserResponse = await response.json();
 

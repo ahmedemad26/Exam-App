@@ -18,10 +18,10 @@ export const deleteAccount = async (): Promise<deleteAccountResponse> => {
         },
       }
     );
+
+    // Payload
     const payload: deleteAccountResponse = await response.json();
-    if (!response.ok || payload.code) {
-      throw payload.message || "Something Went Wrong";
-    }
+  
     return payload;
   } catch (error) {
     throw new Error(`${error}`);
